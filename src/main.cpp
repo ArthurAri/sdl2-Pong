@@ -1,5 +1,6 @@
 #include <SDL2/SDL.h>
 #include <stdio.h>
+#include <iostream>
 #include <Time.hpp>
 
 #include "classes/Player.h"
@@ -11,6 +12,10 @@ using namespace Math;
 
 
 int main(int argc, char** argv){
+    
+    printf("Isso é um print 1");
+    std::cout << "Isso é um cout 1";
+
     if(SDL_Init(SDL_INIT_VIDEO) < 0){
         printf("Error: SDL failed to initialize\nSDL Error: '%s'\n", SDL_GetError());
         return 1;
@@ -32,6 +37,9 @@ int main(int argc, char** argv){
     Player player(0, 0, 50, 50, 5);
 
     SDL_Event event;
+
+    printf("Isso é um print");
+    std::cout << "Isso é um cout";
     
     Time::timeInit();
     while (running) {
@@ -55,6 +63,7 @@ int main(int argc, char** argv){
     
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
+    std::cout << "Terminei";
     SDL_Quit();
     return 0;
 }

@@ -38,25 +38,29 @@ void Player::update(float deltaTime)
     if (d && !a)input.x = 1;
     if (!d && a)input.x = -1;
 
-    std::cout << w << s << a << d << std::endl;
-
+    
     Vector2 normalizedInput;
     // if (input != Math::Vector2::zero)
     //     normalizedInput /= input.magnitude();
     position += input * Time::deltaTime * 100;
     rect.x = SDL_round(position.x);
-    std::cout << position.x << std::endl;
     rect.y = SDL_round(position.y);
 }
+
 void Player::handleInput(const SDL_Event& event)
 {
-    bool isDown = (event.type == SDL_KEYDOWN);
+    if (event.type == SDL_KEYDOWN || event.type == SDL_KEYUP) {
+        bool isDown = (event.type == SDL_KEYDOWN);
 
-    switch (event.key.keysym.sym) {
-        case SDLK_w: w = isDown; break;
-        case SDLK_a: a = isDown; break;
-        case SDLK_s: s = isDown; break;
-        case SDLK_d: d = isDown; break;
+        switch (event.key.keysym.sym) {
+            case SDLK_w: w = isDown; break;
+            case SDLK_a: a = isDown; break;
+            case SDLK_s: s = isDown; break;
+            case SDLK_d: d = isDown; break;
+        }
+
+        // printa estado dos bits
+        std::cout << w << s << a << d << std::endl;
     }
 }
 
